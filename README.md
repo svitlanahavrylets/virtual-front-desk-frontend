@@ -17,7 +17,7 @@ This application provides a simple worksheet UI and communicates with the backen
 - Fetching worksheet tasks from backend API
 - Task and option display with interactive states
 - Answer submission with immediate result feedback
-- Session token handling via sessionStorage
+- Session token handling via `sessionStorage`
 - Reusable and modular React components
 
 ## Environment Configuration
@@ -35,6 +35,8 @@ Example:
 ```ts
 baseURL: "https://virtual-front-desk-backend-2bff.onrender.com";
 ```
+
+Ensure the backend is running and accessible from this URL.
 
 ## Project Setup
 
@@ -65,7 +67,7 @@ npm run preview
 
 ## Application Flow
 
-1. A session token is requested from the backend and stored in sessionStorage
+1. A session token is requested from the backend and stored in `sessionStorage`
 2. Worksheet tasks are fetched from the backend
 3. User selects an option for a task
 4. The answer is sent to the backend with the session token
@@ -105,11 +107,15 @@ Authorization is handled via Bearer token stored in sessionStorage.
 
 Frontend is deployed on:
 
-...
+https://virtual-front-desk-frontend-seven.vercel.app/
+
+Backend API is deployed on Render:
+
+https://virtual-front-desk-backend-2bff.onrender.com
 
 ## Notes
 
-- Session token is reused if already present in sessionStorage
+- Session token is reused if already present in `sessionStorage`
 - API communication is handled via Axios
 - Components are designed to be reusable and extendable
 
