@@ -6,8 +6,8 @@ import Header from "../components/Header";
 
 const Worksheet = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [selectedOptions, setSelectedOptions] = useState<
-    Record<number, number>
+  const [results, setResults] = useState<
+    Record<number, { optionId: number; isCorrect: boolean }>
   >({});
 
   useEffect(() => {
@@ -19,11 +19,19 @@ const Worksheet = () => {
   }, []);
 
   const handleSelect = async (taskId: number, optionId: number) => {
-    setSelectedOptions((prev) => ({ ...prev, [taskId]: optionId }));
-    const result = await submitAnswer(taskId, optionId);
-    alert(result.correct ? "Correct ✅" : "Wrong ❌");
-  };
+    try {
+      // 1. Відправляємо на сервер і отримуємо результат { correct: true/false }
+      const response = await submitAnswer(taskId, optionId);
 
+      // 2. Зберігаємо ID вибору та результат перевірки
+      setResults((prev) => ({
+        ...prev,
+        [taskId]: { optionId, isCorrect: response.correct },
+      }));
+    } catch (error) {
+      console.error("Помилка збереження відповіді", error);
+    }
+  };
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
@@ -32,7 +40,7 @@ const Worksheet = () => {
           <TaskCard
             key={task.id}
             task={task}
-            selectedOptionId={selectedOptions[task.id]}
+            result={results[task.id]}
             onSelectOption={(optionId) => handleSelect(task.id, optionId)}
           />
         ))}

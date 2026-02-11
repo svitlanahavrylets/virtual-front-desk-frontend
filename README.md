@@ -13,12 +13,13 @@ This application provides a simple worksheet UI and communicates with the backen
 
 ## Features
 
-- Session-based worksheet flow
-- Fetching worksheet tasks from backend API
-- Task and option display with interactive states
-- Answer submission with immediate result feedback
-- Session token handling via `sessionStorage`
-- Reusable and modular React components
+- **Session Continuity**: Uses `sessionStorage` to persist session tokens, avoiding redundant API calls.
+- **Dynamic UI**: Renders tasks and options fetched from the Backend API.
+- **Interactive Feedback**:
+  - Hover effects on options.
+  - Distinct **Success (Green)** and **Error (Red)** states after selection.
+  - Visual icons (✓/✕) for accessibility.
+- **Responsive Design**: Fully optimized for mobile and desktop views using Tailwind's utility-first approach.
 
 ## Environment Configuration
 
@@ -111,7 +112,7 @@ https://virtual-front-desk-frontend-seven.vercel.app/
 
 Backend API is deployed on Render:
 
-https://virtual-front-desk-backend-2bff.onrender.com
+https://virtual-front-desk-backend-0z60.onrender.com
 
 ## Notes
 
