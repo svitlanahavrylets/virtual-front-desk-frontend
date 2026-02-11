@@ -9,13 +9,15 @@ export const api = axios.create({
 });
 
 export const getSessionToken = async () => {
-  try {
-    const res = await api.post("/sessions");
-    return res.data.sessionToken;
-  } catch (error) {
-    console.error("Failed to get session token:", error);
-    throw error;
+  const existingToken = sessionStorage.getItem("sessionToken");
+
+  if (existingToken) {
+    return existingToken;
   }
+  const res = await api.get("/sessions");
+  const token = res.data.token;
+  sessionStorage.setItem("sessionToken", token);
+  return token;
 };
 
 export const getTasks = async (): Promise<Task[]> => {
