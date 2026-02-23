@@ -20,16 +20,14 @@ const Worksheet = () => {
 
   const handleSelect = async (taskId: number, optionId: number) => {
     try {
-      // 1. Відправляємо на сервер і отримуємо результат { correct: true/false }
       const response = await submitAnswer(taskId, optionId);
 
-      // 2. Зберігаємо ID вибору та результат перевірки
       setResults((prev) => ({
         ...prev,
         [taskId]: { optionId, isCorrect: response.correct },
       }));
     } catch (error) {
-      console.error("Помилка збереження відповіді", error);
+      console.error("Error saving response", error);
     }
   };
   return (
